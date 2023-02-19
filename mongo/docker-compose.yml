@@ -10,7 +10,7 @@ services:
       - mi-red
   mongo-express:
     image: mongo-express
-    container_name: mongo-express
+    container_name: mi-mongo-express
     ports:
       - "8081:8081"
     environment:
