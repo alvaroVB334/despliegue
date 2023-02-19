@@ -24,4 +24,4 @@ volumes:
   mi-volumen:
 
 networks:
-  mi-red:
+  mi-red2:
