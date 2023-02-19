@@ -14,7 +14,7 @@ services:
     image: phpmyadmin
     container_name: mi-dashboard
     ports:
-      - "8080:8080"
+      - "8080:80"
     networks:
       - mi-red2
     depends_on:
