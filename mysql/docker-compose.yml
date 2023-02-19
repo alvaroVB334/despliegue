@@ -1,0 +1,27 @@
+#1.-Docker compose de despliegue de mongo y mongo-express
+version: '3'
+services:
+  mysql:
+    image: mysql
+    container_name: mi-sql
+    volumes:
+      - mi-volumen:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    networks:
+      - mi-red2
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: mi-dashboard
+    ports:
+      - "8080:8080"
+    networks:
+      - mi-red2
+    depends_on:
+      - mysql
+
+volumes:
+  mi-volumen:
+
+networks:
+  mi-red:
