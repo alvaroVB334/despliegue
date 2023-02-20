@@ -3,34 +3,40 @@ services:
   mongodb:
     image: mongo
     container_name: mi-mongo
+    restart: always
     volumes:
-      - mongo-vol: /data/db
+      - mongo-vol:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12356
     networks:
         mongo-node-net:
-            ipv4_address: 172.40.0.10
+          ipv4_address: 172.40.0.10
   nodejs:
     image: mi-node-image
     container_name: mi-node
-    working_dir: /app
-    volumes:
-      - mongo-vol
     ports:
-      - 3000:3000
+      - "8080:8080"
     networks:
         mongo-node-net:
-            ipv4_address: 172.40.0.11
+          ipv4_address: 172.40.0.11
+        node-nginx-net:
+          ipv4_address: 172.80.0.10
     depends_on:
       - mongodb
   nginx:
-    image: mi-nginx
+    image: nginx:alpine
     container_name: mi-nginx
     ports:
-      - 8080:80
+      - 8082:80
     volumes:
       - mongo-vol
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80
     networks:
         node-nginx-net:
-            ipv4_address: 172.80.0.11
+          ipv4_address: 172.80.0.11
     depends_on:
       - nodejs
 volumes:
