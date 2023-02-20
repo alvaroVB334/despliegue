@@ -9,7 +9,7 @@ services:
       - mongo-node-net:
           ipv4_address: 172.40.0.10
   nodejs:
-    image: node
+    image: mi-node-image
     container_name: mi-node
     working_dir: /app
     volumes:
@@ -24,7 +24,7 @@ services:
     depends_on:
       - mongodb
   nginx:
-    image: nginx
+    image: mi-nginx
     container_name: mi-nginx
     ports:
       - 8080:80
