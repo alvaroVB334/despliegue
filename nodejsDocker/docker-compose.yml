@@ -7,7 +7,7 @@ services:
       - mongo-vol:/data/db
     networks:
       - mongo-node-net:
-          ipv4_address: 172.40.0.10
+            ipv4_address: 172.40.0.10
   nodejs:
     image: mi-node-image
     container_name: mi-node
@@ -18,9 +18,9 @@ services:
       - 3000:3000
     networks:
       - mongo-node-net:
-          ipv4_address: 172.40.0.11  
+            ipv4_address: 172.40.0.11
       - node-nginx-net:
-          ipv4_address: 172.80.0.10
+            ipv4_address: 172.80.0.10
     depends_on:
       - mongodb
   nginx:
@@ -32,21 +32,17 @@ services:
       - mongo-vol
     networks:
       - node-nginx-net:
-          ipv4_address: 172.80.0.11
+            ipv4_address: 172.80.0.11
     depends_on:
       - nodejs
 volumes:
   mongo-vol:
 networks:
   mongo-node-net:
-    driver: bridge
     ipam:
-      driver: default
       config:
         - subnet: 172.40.0.0/16
   node-nginx-net:
-    driver: bridge
     ipam:
-      driver: default
       config:
         - subnet: 172.80.0.0/16
