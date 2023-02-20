@@ -28,7 +28,7 @@ services:
     image: nginx:alpine
     container_name: mi-nginx
     ports:
-      - 8082:80
+      - "8082:80"
     volumes:
       - mongo-vol
     environment:
