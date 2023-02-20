@@ -1,0 +1,3 @@
+docker build -t mi-app .
+
+docker run --net red-nodejs --ip 172.30.0.10 --name mi-app -d -p 8080:8080 mi-app

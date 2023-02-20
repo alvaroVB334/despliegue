@@ -1,5 +1,12 @@
 FROM node:14
-RUN npm start index.js
-COPY . /var/app
+
+WORKDIR /var/app
+
+COPY package*.json ./
+
+RUN npm install
+COPY . .
+
 EXPOSE 8080
-CMD ["node", "index.js"]
+CMD [ "npm", "start" ]
+
