@@ -4,7 +4,7 @@ services:
     image: mongo
     container_name: mi-mongo
     volumes:
-      - mongo-vol:/data/db
+      - mongo-vol: /data/db
     networks:
         mongo-node-net:
             ipv4_address: 172.40.0.10
