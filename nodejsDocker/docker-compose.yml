@@ -6,7 +6,7 @@ services:
     volumes:
       - mongo-vol:/data/db
     networks:
-      - mongo-node-net:
+        mongo-node-net:
             ipv4_address: 172.40.0.10
   nodejs:
     image: mi-node-image
@@ -17,7 +17,7 @@ services:
     ports:
       - 3000:3000
     networks:
-      - mongo-node-net:
+        mongo-node-net:
             ipv4_address: 172.40.0.11
     depends_on:
       - mongodb
@@ -29,7 +29,7 @@ services:
     volumes:
       - mongo-vol
     networks:
-      - node-nginx-net:
+        node-nginx-net:
             ipv4_address: 172.80.0.11
     depends_on:
       - nodejs
